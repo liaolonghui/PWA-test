@@ -1,0 +1,1 @@
+// service worker 中不能使用XMLHTTPRequest发送请求，只能使用fetch api。
