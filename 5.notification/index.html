@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="manifest" href="./manifest.json">
+  <link rel="stylesheet" href="./index.css">
+  <title>Document</title>
+</head>
+<body>
+  5555555555555
+  <script>
+    window.onload = () => {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js').then((registration) => {
+          console.log(registration)
+        }).catch(console.error)
+      }
+    }
+
+    // 没有网提醒下用户
+    if (Notification.permission === 'default') {
+      Notification.requestPermission()
+    }
+    if (!navigator.onLine) {
+      new Notification('提示', {
+        body: '当前网络未连接，使用的是缓存数据。'
+      })
+    }
+    window.addEventListener('online', () => {
+      new Notification('提示', {
+        body: '网络已连接，请刷新页面获取最新数据。'
+      })
+    })
+    // 还有offline事件
+
+  </script>
+</body>
+</html>
